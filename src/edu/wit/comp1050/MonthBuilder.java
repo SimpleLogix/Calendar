@@ -44,6 +44,11 @@ public class MonthBuilder {
 		this.year=year;
 		this.W=getFirstDay(month,year);
 	}
+	public MonthBuilder(int day, int month, int year) {
+		this.month=month;
+		this.year=year;
+		this.day=day;
+	}
 	
 	//get+set methods
 	public boolean isLeapYear() {
@@ -212,5 +217,12 @@ public class MonthBuilder {
 			else
 				return 0;
 		
+	}
+	@Override
+	public String toString() {
+		StringBuilder sb = new StringBuilder();
+		sb.append(String.valueOf(day)+"/"+String.valueOf(month)+"/"+String.valueOf(year));
+		
+		return sb.toString();
 	}
  }

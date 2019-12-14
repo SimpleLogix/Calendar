@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToolBar?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox fx:id="eventWindow" prefHeight="475.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wit.comp1050.AddEventController">
+   <children>
+      <HBox prefHeight="93.0" prefWidth="640.0">
+         <children>
+            <BorderPane maxWidth="1800.0" prefHeight="93.0" prefWidth="1800.0" style="-fx-background-color: #bdbdbd;">
+               <center>
+                  <Label prefHeight="63.0" prefWidth="580.0" text="Add Event" BorderPane.alignment="CENTER">
+                     <font>
+                        <Font name="Dubai Regular" size="35.0" />
+                     </font>
+                  </Label>
+               </center>
+            </BorderPane>
+         </children>
+      </HBox>
+      <ToolBar prefHeight="46.0" prefWidth="500.0" style="-fx-background-color: lightgrey;">
+        <items>
+            <TextField fx:id="nameLabel" prefHeight="26.0" prefWidth="334.0" promptText="Event Name">
+               <font>
+                  <Font size="13.0" />
+               </font>
+            </TextField>
+            <Region prefHeight="23.0" prefWidth="15.0" />
+            <MenuButton fx:id="colorButton" mnemonicParsing="false" text="Color">
+              <items>
+                <MenuItem fx:id="none" mnemonicParsing="false" onAction="#setNone" text="None" />
+                <MenuItem fx:id="red" mnemonicParsing="false" onAction="#setRed" text="Red" />
+                  <MenuItem fx:id="orange" mnemonicParsing="false" onAction="#setOrange" text="Orange" />
+                  <MenuItem fx:id="yellow" mnemonicParsing="false" onAction="#setYellow" text="Yellow" />
+                  <MenuItem fx:id="green" mnemonicParsing="false" onAction="#setGreen" text="Green" />
+                  <MenuItem fx:id="blue" mnemonicParsing="false" onAction="#setBlue" text="Blue" />
+                  <MenuItem fx:id="purple" mnemonicParsing="false" onAction="#setPurple" text="Purple" />
+              </items>
+            </MenuButton>
+            <Region prefHeight="22.0" prefWidth="12.0" />
+          <Button fx:id="saveButton" mnemonicParsing="false" onAction="#saveBtn" text="Save" />
+            <Region prefHeight="14.0" prefWidth="11.0" />
+            <Button fx:id="deleteButton" mnemonicParsing="false" onAction="#deleteBtn" text="Delete" />
+            <Region prefHeight="14.0" prefWidth="11.0" />
+            <Button fx:id="exitButton" mnemonicParsing="false" onAction="#exitBtn" text="Exit" />
+            <Region prefHeight="14.0" prefWidth="11.0" />
+            <Label fx:id="savedText" text="Saved!">
+               <font>
+                  <Font name="Dubai Regular" size="17.0" />
+               </font>
+            </Label>
+        </items>
+         <VBox.margin>
+            <Insets />
+         </VBox.margin>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+      </ToolBar>
+      <HBox prefHeight="261.0" prefWidth="640.0">
+         <children>
+            <AnchorPane prefHeight="200.0" prefWidth="200.0">
+               <children>
+                  <Label contentDisplay="CENTER" layoutX="28.0" layoutY="14.0" prefHeight="76.0" prefWidth="144.0" text="Details" textAlignment="CENTER" AnchorPane.leftAnchor="28.0" AnchorPane.topAnchor="14.0">
+                     <font>
+                        <Font name="Dubai Light" size="42.0" />
+                     </font>
+                  </Label>
+                  <DatePicker fx:id="dateLabel" layoutX="13.0" layoutY="99.0" />
+                  <Label layoutX="14.0" layoutY="82.0" text="Event Date" />
+                  <TextField fx:id="locationLabel" layoutX="13.0" layoutY="173.0" promptText="..." />
+                  <Label layoutX="14.0" layoutY="156.0" text="Event Location" />
+               </children>
+            </AnchorPane>
+            <AnchorPane prefHeight="262.0" prefWidth="444.0">
+               <children>
+                  <Label layoutX="29.0" layoutY="8.0" text="Description">
+                     <font>
+                        <Font name="Dubai Light" size="42.0" />
+                     </font>
+                  </Label>
+                  <TextArea fx:id="descriptionLabel" layoutX="25.0" layoutY="68.0" prefHeight="213.0" prefWidth="437.0" promptText="(optional)" />
+               </children>
+            </AnchorPane>
+         </children>
+      </HBox>
+   </children>
+</VBox>

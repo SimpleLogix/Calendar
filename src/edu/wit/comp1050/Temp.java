@@ -1,33 +1,57 @@
 package edu.wit.comp1050;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.RandomAccessFile;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
+
 import javafx.fxml.FXMLLoader;
 
 public class Temp extends CalendarController {
 
+	//method to convert
+public static EventBuilder convertCSVtoEvent(String str) {
+	
+	String name = str.split(",")[0];
+	String location = str.split(",")[1];
+	String description = str.split(",")[2];
+	String dateStr = str.split(",")[3];
+	int day=Integer.parseInt(dateStr.split("/")[0]), month=Integer.parseInt(dateStr.split("/")[1]), 
+			year=Integer.parseInt(dateStr.split("/")[2]);
+	MonthBuilder date = new MonthBuilder(day,month,year);
+	String color = str.split(",")[4];
+	int ID = Integer.parseInt(str.split(",")[5]);
+	
+	EventBuilder event = new EventBuilder(name, location, description, date, color, ID);
+
+return event;
+}
+	
 	public static void main(String[] args) {
-		int year = 1992,month=12;
 		
-		MonthBuilder today = new MonthBuilder();
+		ArrayList<String> eventCSV = new ArrayList<>();
+		ArrayList<EventBuilder> eventList = new ArrayList<>();
+		File eventFile = new File("src/edu/wit/comp1050/resources/EventList");
 		
-		MonthBuilder NOV2K19 = new MonthBuilder(11,2019);
-		MonthBuilder FEB2K19 = new MonthBuilder(2,1900);
-		MonthBuilder FEB2K20 = new MonthBuilder(2,2000);
-		MonthBuilder AUG2K19 = new MonthBuilder(8,2019);
-		MonthBuilder JAN2K19 = new MonthBuilder(6,2020);
 		
-		int firstDay = FEB2K19.getFirstDay();
-		int x=1,y=2,z=3;
-		int[] i = {x,y,z};
-		
-		System.out.print(i[0]);
-		
-		int temp = i[0];
-		temp = temp+1;
-		
-		System.out.print(temp);
-		
+		ArrayList<EventBuilder> allEvents = new ArrayList<>();
+		try {
+			Scanner fin = new Scanner(eventFile);
+			while (fin.hasNextLine()) {
+				allEvents.add(convertCSVtoEvent(fin.nextLine()));
+			}
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
+		System.out.print(allEvents.size());
+
+	}
 
 		
-	}
 
 }

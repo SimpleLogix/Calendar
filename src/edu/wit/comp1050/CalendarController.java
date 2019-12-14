@@ -1,5 +1,6 @@
 package edu.wit.comp1050;
 
+import java.io.IOException;
 import java.time.LocalDate;
 
 import javafx.event.ActionEvent;
@@ -25,6 +26,7 @@ import javafx.scene.paint.Paint;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Line;
 import javafx.scene.text.Text;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 
@@ -98,13 +100,13 @@ public class CalendarController {
 
 	public int getDisplayedYear() {
 		MonthBuilder displayedDate = new MonthBuilder(getMonth(monthSB.getText()) + 1,
-				Integer.parseInt(yearSB.getText()));
+				Integer.valueOf(yearSB.getText()));
 		return displayedDate.getYear();
 	}
 
 	public int getDisplayedMonth() {
 		MonthBuilder displayedDate = new MonthBuilder(getMonth(monthSB.getText()) + 1,
-				Integer.parseInt(yearSB.getText()));
+				Integer.valueOf(yearSB.getText()));
 		return displayedDate.getMonth();
 
 	}
@@ -117,9 +119,9 @@ public class CalendarController {
 		return getDisplayedYear() - 1;
 	}
 
-	// ============================================//
+	// ===========================================//
 	// METHODS TO HELP BUILD THE CALENDAR DISPLAY //
-	// ============================================//
+	// ===========================================//
 
 	// method to display calendar face with correct dates...
 	// it first calculates which day of the week the first falls on
@@ -658,15 +660,17 @@ public class CalendarController {
 		this.yearSB.setText(Integer.toString(today.getYear()));
 		this.datePicker.setValue(LocalDate.now());
 	}
+	
+
 
 	// method to make last month's boxes dark
 	public void makeDarkBox(VBox box) {
-		box.setBackground(new Background(new BackgroundFill(Color.web("#A9A9A9"), CornerRadii.EMPTY, Insets.EMPTY)));
+		box.setBackground(new Background(new BackgroundFill(Color.web("#a4a4a4"), CornerRadii.EMPTY, Insets.EMPTY)));
 	}
 
 	// method to make current month's boxes back to normal
 	public void makeLightBox(VBox box) {
-		box.setBackground(new Background(new BackgroundFill(Color.web("#F5F5DC"), CornerRadii.EMPTY, Insets.EMPTY)));
+		box.setBackground(new Background(new BackgroundFill(Color.web("#ededed"), CornerRadii.EMPTY, Insets.EMPTY)));
 	}
 
 	// method to set end month Box colors
@@ -712,29 +716,103 @@ public class CalendarController {
 		this.wk6sunDay.setVisible(false);
 		this.wk6monDay.setVisible(false);
 	}
+	//this method is used to set the color of today's circle
 	public void setToday() {
+		
+		MonthBuilder displayedCalendarFace = new MonthBuilder(getDisplayedMonth(), getDisplayedYear());
 		
 		//going through each circle + text and checking if it matches today
 		
-		if (getDisplayedMonth()==today.getMonth() && getDisplayedYear() == today.getYear()) {
+		if (displayedCalendarFace.getMonth()==today.getMonth() && displayedCalendarFace.getYear() == today.getYear()) {
+			setColor(wk1sunDay,wk1sunCircle);
+			setColor(wk1monDay,wk1monCircle);
+			setColor(wk1tueDay,wk1tueCircle);
+			setColor(wk1wedDay,wk1wedCircle);
+			setColor(wk1thuDay,wk1thuCircle);
+			setColor(wk1friDay,wk1friCircle);
+			setColor(wk1satDay,wk1satCircle);
+			setColor(wk2sunDay,wk2sunCircle);
+			setColor(wk2monDay,wk2monCircle);
+			setColor(wk2tueDay,wk2tueCircle);
+			setColor(wk2wedDay,wk2wedCircle);
+			setColor(wk2thuDay,wk2thuCircle);
+			setColor(wk2friDay,wk2friCircle);
+			setColor(wk2satDay,wk2satCircle);
+			setColor(wk3sunDay,wk3sunCircle);
+			setColor(wk3monDay,wk3monCircle);
+			setColor(wk3tueDay,wk3tueCircle);
+			setColor(wk3wedDay,wk3wedCircle);
+			setColor(wk3thuDay,wk3thuCircle);
+			setColor(wk3friDay,wk3friCircle);
+			setColor(wk4satDay,wk3satCircle);
+			setColor(wk4sunDay,wk4sunCircle);
+			setColor(wk4monDay,wk4monCircle);
+			setColor(wk4tueDay,wk4tueCircle);
+			setColor(wk4wedDay,wk4wedCircle);
+			setColor(wk4thuDay,wk4thuCircle);
+			setColor(wk4friDay,wk4friCircle);
+			setColor(wk4satDay,wk4satCircle);
+			setColor(wk5sunDay,wk5sunCircle);
+			setColor(wk5monDay,wk5monCircle);
+			setColor(wk5tueDay,wk5tueCircle);
+			setColor(wk5wedDay,wk5wedCircle);
+			setColor(wk5thuDay,wk5thuCircle);
+			setColor(wk5friDay,wk5friCircle);
+			setColor(wk5satDay,wk5satCircle);
+			setColor(wk6sunDay,wk6sunCircle);
+			setColor(wk6monDay,wk6monCircle);
 			
-			if(wk1sunDay.getText().contentEquals(todayStr))
-				wk1sunCircle.setFill(Paint.valueOf("#d97a7d"));
-			else {
-				wk1sunCircle.setFill(Paint.valueOf("A9A9A9"));
-			}
-			if(wk1monDay.getText().contentEquals(todayStr))
-				wk1monCircle.setFill(Paint.valueOf("#d97a7d"));
-			else {
-				this.wk1monCircle.setFill(Paint.valueOf("A9A9A9"));
-			}
-			if(wk2wedDay.getText().contentEquals(todayStr))
-				wk2wedCircle.setFill(Paint.valueOf("#d97a7d"));
-			else {
-				wk2wedCircle.setFill(Paint.valueOf("A9A9A9"));
-			}
 			
 		}  
+		else 
+			resetColor();
+			
+	}
+	
+	public void setColor(Text text, Circle circle) {
+		if (text.getText().equals(todayStr))
+				circle.setFill(Paint.valueOf("#84e184"));
+		else
+			circle.setFill(Paint.valueOf("#BDBDBD"));
+	}
+	public void resetColor() {
+		wk1sunCircle.setFill(Paint.valueOf("#BDBDBD"));
+		wk1monCircle.setFill(Paint.valueOf("#BDBDBD"));
+		wk1tueCircle.setFill(Paint.valueOf("#BDBDBD"));
+		wk1wedCircle.setFill(Paint.valueOf("#BDBDBD")); 
+		wk1thuCircle.setFill(Paint.valueOf("#BDBDBD"));
+		wk1friCircle.setFill(Paint.valueOf("#BDBDBD")); 
+		wk1satCircle.setFill(Paint.valueOf("#BDBDBD"));
+		wk2sunCircle.setFill(Paint.valueOf("#BDBDBD"));
+		wk2monCircle.setFill(Paint.valueOf("#BDBDBD"));
+		wk2tueCircle.setFill(Paint.valueOf("#BDBDBD"));
+		wk2wedCircle.setFill(Paint.valueOf("#BDBDBD"));
+		wk2thuCircle.setFill(Paint.valueOf("#BDBDBD"));
+		wk2friCircle.setFill(Paint.valueOf("#BDBDBD"));
+		wk2satCircle.setFill(Paint.valueOf("#BDBDBD"));
+		wk3sunCircle.setFill(Paint.valueOf("#BDBDBD"));
+		wk3monCircle.setFill(Paint.valueOf("#BDBDBD"));
+		wk3tueCircle.setFill(Paint.valueOf("#BDBDBD"));
+		wk3wedCircle.setFill(Paint.valueOf("#BDBDBD"));
+		wk3thuCircle.setFill(Paint.valueOf("#BDBDBD"));
+		wk3friCircle.setFill(Paint.valueOf("#BDBDBD")); 
+		wk3satCircle.setFill(Paint.valueOf("#BDBDBD")); 
+		wk4sunCircle.setFill(Paint.valueOf("#BDBDBD"));
+		wk4monCircle.setFill(Paint.valueOf("#BDBDBD"));
+		wk4tueCircle.setFill(Paint.valueOf("#BDBDBD"));
+		wk4wedCircle.setFill(Paint.valueOf("#BDBDBD"));
+		wk4thuCircle.setFill(Paint.valueOf("#BDBDBD"));
+		wk4friCircle.setFill(Paint.valueOf("#BDBDBD"));
+		wk4satCircle.setFill(Paint.valueOf("#BDBDBD"));
+		wk5sunCircle.setFill(Paint.valueOf("#BDBDBD")); 
+		wk5monCircle.setFill(Paint.valueOf("#BDBDBD")); 
+		wk5tueCircle.setFill(Paint.valueOf("#BDBDBD")); 
+		wk5wedCircle.setFill(Paint.valueOf("#BDBDBD")); 
+		wk5thuCircle.setFill(Paint.valueOf("#BDBDBD"));
+		wk5friCircle.setFill(Paint.valueOf("#BDBDBD")); 
+		wk5satCircle.setFill(Paint.valueOf("#BDBDBD")); 
+		wk6sunCircle.setFill(Paint.valueOf("#BDBDBD")); 
+		wk6monCircle.setFill(Paint.valueOf("#BDBDBD"));
 	}
 
 	// BUTTON FUNCTIONS:
@@ -757,6 +835,22 @@ public class CalendarController {
 		Stage window = (Stage) ((Node) e.getSource()).getScene().getWindow();
 		window.setScene(scene);
 		window.show();
+
+	}
+	
+	@FXML
+	public void launchAddEvent(ActionEvent e) throws Exception{
+		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("AddEvent.fxml"));
+		Parent root = fxmlLoader.load();
+		Stage stage = new Stage();
+		AddEventController controller = fxmlLoader.getController();
+		controller.setDatePickerToday();
+		controller.savedText.setVisible(false);
+		stage.initModality(Modality.APPLICATION_MODAL);
+		stage.setOpacity(1);
+		stage.setTitle("Add Event");
+		stage.setScene(new Scene(root));
+		stage.showAndWait();
 
 	}
 
@@ -783,11 +877,13 @@ public class CalendarController {
 	}
 	
 	@FXML
-	public void pickDate() {
+	public void pickDate(ActionEvent e) {
 		LocalDate selectedDate = this.datePicker.getValue();
-		this.monthSB.setText(String.valueOf(selectedDate.getMonthValue()));
+		this.monthSB.setText(MONTHS[selectedDate.getMonthValue()-1]);
 		this.yearSB.setText(String.valueOf(selectedDate.getYear()));
 		displayCalendarFace();
 	}
+	
+
 
 }
