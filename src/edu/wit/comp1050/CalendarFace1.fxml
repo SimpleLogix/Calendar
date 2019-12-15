@@ -20,7 +20,7 @@
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="625.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wit.comp1050.CalendarController">
    <top>
-      <AnchorPane prefHeight="130.0" prefWidth="700.0" style="-fx-background-color: #d74444;" BorderPane.alignment="CENTER">
+      <AnchorPane fx:id="topBorder" prefHeight="130.0" prefWidth="700.0" style="-fx-background-color: 0;" BorderPane.alignment="CENTER">
          <children>
             <Text fx:id="monthSB" layoutX="69.0" layoutY="99.0" strokeType="OUTSIDE" strokeWidth="0.0" text="January" textAlignment="CENTER" wrappingWidth="320.4130859375" AnchorPane.bottomAnchor="21.556250000000006" AnchorPane.leftAnchor="69.0" AnchorPane.topAnchor="38.84375">
                <font>

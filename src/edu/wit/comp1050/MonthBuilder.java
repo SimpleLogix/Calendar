@@ -221,7 +221,7 @@ public class MonthBuilder {
 	@Override
 	public String toString() {
 		StringBuilder sb = new StringBuilder();
-		sb.append(String.valueOf(day)+"/"+String.valueOf(month)+"/"+String.valueOf(year));
+		sb.append(String.valueOf(month)+"/"+String.valueOf(day)+"/"+String.valueOf(year));
 		
 		return sb.toString();
 	}

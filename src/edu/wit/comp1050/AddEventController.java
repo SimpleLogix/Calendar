@@ -10,7 +10,8 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-
+import javafx.animation.PauseTransition;
+import javafx.animation.SequentialTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -27,6 +28,7 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 
 public class AddEventController {
 
@@ -90,6 +92,18 @@ public class AddEventController {
 			}
 			savedText.setVisible(true);
 		}
+		
+		//wait 2 sec to show saved text then exit
+		PauseTransition pause = new PauseTransition(
+		        Duration.seconds(1)
+		    );
+		    pause.setOnFinished(event -> {
+		    	Stage stage = (Stage) exitButton.getScene().getWindow();
+				stage.close();
+		            
+		    });
+		    pause.play();
+		
 	}
 
 	@FXML
@@ -140,13 +154,13 @@ public class AddEventController {
 	}
 	
 		//method to convert
-	public EventBuilder convertCSVtoEvent(String str) {
+	public static EventBuilder convertCSVtoEvent(String str) {
 		
 		String name = str.split(",")[0];
 		String location = str.split(",")[1];
 		String description = str.split(",")[2];
 		String dateStr = str.split(",")[3];
-		int day=Integer.parseInt(dateStr.split("/")[0]), month=Integer.parseInt(dateStr.split("/")[1]), 
+		int day=Integer.parseInt(dateStr.split("/")[1]), month=Integer.parseInt(dateStr.split("/")[0]), 
 				year=Integer.parseInt(dateStr.split("/")[2]);
 		MonthBuilder date = new MonthBuilder(day,month,year);
 		String color = str.split(",")[4];

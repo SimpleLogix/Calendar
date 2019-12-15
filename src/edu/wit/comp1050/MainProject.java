@@ -8,6 +8,7 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 
@@ -24,7 +25,8 @@ public class MainProject extends Application {
 	    public void start(Stage primaryStage) throws Exception{
 	       
 	    	primaryStage.setTitle("Calendar");
-	        
+	    	primaryStage.getIcons().add(new Image("/edu/wit/comp1050/resources/calendar.png"));
+	    	
 	        Parent startP = FXMLLoader.load(getClass().getResource("StartProgram.fxml"));
 	        Scene scene = new Scene(startP);
 	        
