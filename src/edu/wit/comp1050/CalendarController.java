@@ -1,7 +1,11 @@
 package edu.wit.comp1050;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.Scanner;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -11,6 +15,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.DatePicker;
+import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
@@ -30,7 +35,7 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 
-public class CalendarController {
+public class CalendarController extends AddEventController{
 
 	@FXML
 	public Text monthSB;
@@ -57,6 +62,15 @@ public class CalendarController {
 	public AnchorPane sundaySplitAnchor, mondaySplitAnchor;
 	@FXML
 	public DatePicker datePicker;
+	//labels used to display events
+	@FXML
+	public Label sun1L1,sun1L2,sun1L3,sun2L1,sun2L2,sun2L3,sun3L1,sun3L2,sun3L3,sun4L1,sun4L2,sun4L3,sun5L1,sun5L2,sun6L1,
+		mon1L1,mon1L2,mon1L3,mon2L1,mon2L2,mon2L3,mon3L1,mon3L2,mon3L3,mon4L1,mon4L2,mon4L3,mon5L1,mon5L2,mon6L1,
+		tue1L1,tue1L2,tue1L3,tue2L1,tue2L2,tue2L3,tue3L1,tue3L2,tue3L3,tue4L1,tue4L2,tue4L3,tue5L1,tue5L2,tue5L3,
+		wed1L1,wed1L2,wed1L3,wed2L1,wed2L2,wed2L3,wed3L1,wed3L2,wed3L3,wed4L1,wed4L2,wed4L3,wed5L1,wed5L2,wed5L3,
+		thu1L1,thu1L2,thu1L3,thu2L1,thu2L2,thu2L3,thu3L1,thu3L2,thu3L3,thu4L1,thu4L2,thu4L3,thu5L1,thu5L2,thu5L3,
+		fri1L1,fri1L2,fri1L3,fri2L1,fri2L2,fri2L3,fri3L1,fri3L2,fri3L3,fri4L1,fri4L2,fri4L3,fri5L1,fri5L2,fri5L3,
+		sat1L1,sat1L2,sat1L3,sat2L1,sat2L2,sat2L3,sat3L1,sat3L2,sat3L3,sat4L1,sat4L2,sat4L3,sat5L1,sat5L2,sat5L3;
 	
 
 	MonthBuilder today = new MonthBuilder();
@@ -654,13 +668,48 @@ public class CalendarController {
 		setToday();
 	}
 
+	public void displayAllEvents() {
+			//reading from eventList file
+		File eventFile = new File("src/edu/wit/comp1050/resources/EventList");
+		ArrayList<EventBuilder> allEvents = new ArrayList<>();
+		ArrayList<EventBuilder> displayedEvents = new ArrayList<>();
+		
+			//creating EventBuilder objects from CSV values and putting them into array list
+		try {
+			Scanner fin = new Scanner(eventFile);
+			while (fin.hasNextLine()) {
+				allEvents.add(convertCSVtoEvent(fin.nextLine()));
+			}
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
+		
+			//checking displayed month and picking displayed events
+		for(int i=0;i<allEvents.size();i++) {
+			if (getDisplayedMonth()==allEvents.get(i).getDate().getMonth() && 
+					getDisplayedYear()==allEvents.get(i).getDate().getYear()) {
+				displayedEvents.add(allEvents.get(i));
+			}
+		}
+		
+			//loop to display each event
+		for (EventBuilder event : displayedEvents) {
+			
+			//THIS IS WHERE I GOT STUCK
+			//WASNT SURE HOW TO SHOW EACH EVENT 
+			//IN THE RIGHT DAY 
+			
+		}
+		
+	}
+	
 	// method to initialize the calendar on launch
 	public void initData(String currentMonth) {
 		this.monthSB.setText(currentMonth);
 		this.yearSB.setText(Integer.toString(today.getYear()));
 		this.datePicker.setValue(LocalDate.now());
 	}
-	
+	//method to clear Events on launch
 
 
 	// method to make last month's boxes dark
@@ -715,6 +764,10 @@ public class CalendarController {
 		this.wk6monCircle.setVisible(false);
 		this.wk6sunDay.setVisible(false);
 		this.wk6monDay.setVisible(false);
+	}
+	//method to clear event labels
+	public void clearLabels() {
+		
 	}
 	//this method is used to set the color of today's circle
 	public void setToday() {

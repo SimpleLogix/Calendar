@@ -91,22 +91,7 @@ public class AddEventController {
 			savedText.setVisible(true);
 		}
 	}
-	@FXML
-	public void displayAllEvents() {
-			//reading from eventList file
-		File eventFile = new File("src/edu/wit/comp1050/resources/EventList");
-		ArrayList<EventBuilder> allEvents = new ArrayList<>();
-			//creating EventBuilder objects from CSV values
-		try {
-			Scanner fin = new Scanner(eventFile);
-			while (fin.hasNextLine()) {
-				allEvents.add(convertCSVtoEvent(fin.nextLine()));
-			}
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		}
-		
-	}
+
 	@FXML
 	public void exitBtn(ActionEvent e) {
 		 //close the window
