@@ -122,9 +122,8 @@ Overall, I am content with the amount of progress made in this project in the tw
 
 - ✅ Display current day & month as well as next/prev months
 - ✅ Add, edit, or remove custom events
-  * [ ] Add the ability to colo-code events
-- ✅ Events saved and laoded locally
-  - [ ] Possibly host on some online web service 
+  * [ ] Add the ability to color-code events
+- ✅ Events saved and loaded locally
 
 <!-- RESOURCES -->
 ## Resources
@@ -147,7 +146,7 @@ Distributed under the MIT License. See `LICENSE.txt` for more information.
 <!-- CONTACT -->
 ## Contact
 
-Walid Harkous- [@gituhb](https://github.com/SimpleLogix) - harkouswalid@gmail.com
+Walid Harkous- [@github](https://github.com/SimpleLogix) - harkouswalid@gmail.com
 
 Project Link: [Calendar](https://github.com/SimpleLogix/Calendar)
 
@@ -155,8 +154,8 @@ Project Link: [Calendar](https://github.com/SimpleLogix/Calendar)
 
 <!-- ACKNOWLEDGMENTS -->
 ## Acknowledgments
-* Special thanks to [Professor Russel Adam](https://github.com/adamcrussell) for providing the necessary resources to bring this project to life 
-* Big shout out to my OG Advisor [Charles Wiseman](https://github.com/cgwiseman) for the guidance before the beginning of this course
+* Special thanks to *Professor* [Russel Adam](https://github.com/adamcrussell) for providing the necessary resources to bring this project to life 
+* Big shout out to my *OG Advisor* [Charles Wiseman](https://github.com/cgwiseman) for the guidance before the beginning of this course
 
 
 <!-- ACKNOWLEDGMENTS & REMARKS-->
